@@ -1,0 +1,31 @@
+
+/*  About us Page */
+ h1, h2 { text-align: center; color: #000; 
+ } 
+ section { 
+  max-width: 1000px; margin: 30px auto; padding: 25px; background: #fff; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+} 
+section h2 { 
+  margin-bottom: 15px; font-size: 24px; border-bottom: 3px solid #FFD700; display: inline-block; padding-bottom: 5px; 
+} 
+section p, section ul {
+   font-size: 16px; line-height: 1.6; color: #444; 
+  } 
+  .values ul { 
+    list-style: none; padding: 0; 
+  } 
+  .values li { 
+    margin-bottom: 10px; padding: 10px; background: #fff8cc; border-left: 5px solid #FFD700; border-radius: 6px; 
+  } 
+  .team-section {
+     max-width: 1100px; margin: 40px auto; padding: 20px; text-align: center;margin-bottom: 80px; 
+    } 
+    .team-container { 
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; 
+    } 
+    .about-card:hover { transform: scale(1.00); box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
+    } 
+    .about-card { width: 300px; height: 400px; /* full card height */ border-radius: 12px; /* overflow: hidden; */ box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: relative; 
+    } 
+    .about-img { width: 100%; height: 100%; /* image fills full card */ background-size: cover; background-position: center; display: flex; align-items: flex-end; } /* .about-info { width: 100%; background: rgba(0,0,0,0.6); color: #fff; padding: 15px; text-align: center; } */ 
+    .about-info h3 { margin: 10px 0; color: #000; } .about-info p { margin: 5px 0; font-size: 14px; color: black; }

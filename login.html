@@ -4,34 +4,237 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Page</title>
-  <link rel="icon" href="Images/Food-Delivary-Logo.jpg">
+  <link rel="icon" href="Images/Travels-Logo.jpg">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #000; /* black */
+      color: #fff;
+    }
+
+    .login-box {
+      background: #111;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(255, 255, 0, 0.3);
+      width: 350px;
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #ffeb3b; /* yellow */
+      font-size: 22px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 5px;
+      color: #ffeb3b;
+      font-size: 14px;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px 40px 10px 10px;
+      border: 1px solid #ffeb3b;
+      border-radius: 6px;
+      background: #000;
+      color: #fff;
+      outline: none;
+    }
+
+    .input-group i {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffeb3b;
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      margin: 15px 0;
+      background: #ffeb3b;
+      color: #000;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #fdd835;
+    }
+
+    p {
+      text-align: center;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    a {
+      color: #ffeb3b;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .social-login {
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .social-login a {
+      display: inline-block;
+      margin: 0 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ffeb3b;
+      color: #000;
+      line-height: 40px;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    .social-login a:hover {
+      background: #fdd835;
+    }
+  </style>
 </head>
 <body>
-    <!-- Login Page Details -->
-    <h1>Login</h1>
-    <form action="">
-      <label for="username">UserName</label>
-      <input type="text" placeholder="Enter the UserName"> <i class="fa-solid fa-user"></i> <br> 
-      <label for="password">Password</label> 
-      <input type="password" placeholder="Enter the Password"> <i class="fa-solid fa-lock"></i> <br>
-      <P><a href="forgetpassword.html" target="_self">Forget Password</a></P>
-      <button>login</button>
-      <p>or login with Social platforms</p>
-      <div>
-      <a href="">
-        <i class="fa-brands fa-google"></i>
-      </a>
-      <a href="">
-        <i class="fa-brands fa-facebook"></i>
-      </a>
-      <a href="">
-        <i class="fa-brands fa-github"></i>
-      </a>
-      <a href="">
-        <i class="fa-brands fa-linkedin"></i>
-      </a>
+  <div class="login-box">
+    <a href="index.html" style="text-decoration: none;"><h2>Welcome Back! <br> Login to your account</h2></a>
+    <form action="#">
+      <label for="username">Username / Email</label>
+      <div class="input-group">
+        <input type="text" id="username" placeholder="Enter your username">
+        <i class="fa-solid fa-user"></i>
       </div>
-    </form>
+
+      <label for="password">Password</label>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Enter your password">
+        <i class="fa-solid fa-eye" onclick="togglePassword();"></i>
+      </div>
+      <p><a href="forgetpassword.html">Forgot Password?</a></p>
+      <!-- <p>OR</p>
+
+      <div class="social-login">
+        <a href="#"><i class="fa-brands fa-google"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-github"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div> -->
+
+     <button type="button" id="loginBtn" onclick="loginUser();">Login</button>
+    <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
+    <h2 id="loginMessage" style="text-align: center;"></h2>
+</form>
+  </div>
 </body>
+
+<!-- Check the User or -->
+<script>
+  // Password toggle
+  function togglePassword() {
+    const p = document.getElementById("password");
+    p.type = p.type === "password" ? "text" : "password";
+  }
+
+
+  function loginUser() {
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const msg = document.getElementById("loginMessage");
+
+  // Empty field validation
+  if (!username && !password) {
+    msg.textContent = "Username and Password are required.";
+    msg.style.color = "red";
+    return;
+  }
+  if (!username) {
+    msg.textContent = "Username is required.";
+    msg.style.color = "red";
+    return;
+  }
+  if (!password) {
+    msg.textContent = "Password is required.";
+    msg.style.color = "red";
+    return;
+  }
+
+  const storedAdmin = JSON.parse(localStorage.getItem("admin"));
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+
+  // Check Admin
+  if (storedAdmin && (storedAdmin.email === username || storedAdmin.fullname === username)) {
+    if (storedAdmin.password === password) {
+      msg.textContent = "Login successful.";
+      msg.style.color = "limegreen";
+      sessionStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("fullname", storedAdmin.fullname);
+      // sessionStorage.setItem("phone",storedAdmi)
+      setTimeout(() => {
+        window.location.href = "admin-dashboard.html";
+      }, 1000);
+      return;
+    } else {
+      msg.textContent = "Invalid password.";
+      msg.style.color = "red";
+      return;
+    }
+  }
+
+  // Check User
+  if (storedUser && (storedUser.email === username || storedUser.fullname === username)) {
+    if (storedUser.password === password) {
+      msg.textContent = "Login successful.";
+      msg.style.color = "limegreen";
+      sessionStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("fullname", storedUser.fullname);
+      sessionStorage.setItem("email",storedUser.email);
+      // sessionStorage.setItem("phone",storedUser.)
+      // sessionStorage.setItem("phone",storedUser.password);
+      setTimeout(() => {
+        window.location.href = "user-dashboard.html";
+      }, 1000);
+      return;
+    } else {
+      msg.textContent = "Invalid password.";
+      msg.style.color = "red";
+      return;
+    }
+  }
+
+  // If username not found in admin or user
+  msg.textContent = "Invalid username or user not found.";
+  msg.style.color = "red";
+}
+</script>
+
 </html>

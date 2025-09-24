@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - Vibe Route</title>
+  <link rel="icon" href="Images/Travels-Logo.jpg">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="user-dashboard.css">
+  <link rel="stylesheet" href="user-dashboard-nav.css">
+  <link rel="stylesheet" href="footer.css">
+
+  <style>
+
+    /* Profile Section */
+    .profile-section {
+      padding: 30px;
+      background-color: #f8f8f8;
+      border-radius: 12px;
+      margin: 20px auto;
+      max-width: 1000px;
+    }
+
+    .profile-section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .profile-card {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .profile-img {
+      flex: 1 1 200px;
+      text-align: center;
+    }
+
+    .profile-img img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #FFD700;
+    }
+
+    .profile-info {
+      flex: 2 1 400px;
+      padding: 0 20px;
+    }
+
+    .profile-info p {
+      font-size: 18px;
+      margin: 12px 0;
+    }
+
+    .profile-info .edit-btn {
+      padding: 10px 20px;
+      background-color: #FFD700;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .profile-info .edit-btn:hover {
+      background-color: #e6c200;
+    }
+
+    @media (max-width: 768px) {
+      .profile-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .profile-info {
+        padding: 20px 0 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h3><img src="Images/Travels-Logo.jpg" alt="Logo" width="30" height="30">VIBE ROUTE'S</h3>
+    <ul>
+      <li><a href="user-dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a></li>
+      <li><a href="bookings.html"><i class="fas fa-plane"></i> Bookings</a></li>
+      <li><a href="favorites.html"><i class="fas fa-heart"></i> Favorites</a></li>
+      <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Profile Section -->
+  <section class="profile-section">
+    <h2>My Profile</h2>
+    <div class="profile-card">
+      <div class="profile-img">
+        <img src="Images/default-user.png" alt="Profile Picture" id="profilePic">
+      </div>
+      <div class="profile-info">
+        <p><strong>Full Name:</strong> <span id="userFullName"></span></p>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        <p><strong>Phone:</strong> <span id="userPhone"></span></p>
+        <p><strong>Role:</strong> <span id="userRole"></span></p>
+        <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+      </div>
+    </div>
+  </section>
+<!-- Footer Page Details -->
+ <footer>
+  <div class="footer-container">
+    <div class="footer-logo">
+  <h3>
+    <img src="Images/Travels-Logo.jpg" alt="Travel Logo" width="15px" height="20px">Vibe Route's
+  </h3>
+    </div>
+    <div class="footer-info">
+      <p>© 2025 Vibe Route Travel. All rights reserved.</p>
+      <p>Address: 123 Travel Street, Chennai, Tamil Nadu, India</p>
+      <p>Email: <a href="mailto:info@viberoute.com">info@viberoute.com</a></p>
+      <p>Phone: <a href="tel:+919876543210">+91 98765 43210</a></p>
+    </div>
+    <div class="footer-social">
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+  </div>
+</footer>
+</body>
+<script>
+    // Check login
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) {
+      alert("Please login first!");
+      window.location.href = "login.html";
+    }
+
+    // Populate profile info from sessionStorage
+    const fullName = sessionStorage.getItem("fullname") || "John Doe";
+    const email = sessionStorage.getItem("email") || "johndoe@example.com";
+    const phone = sessionStorage.getItem("phone") || "+91 98765 43210";
+    const role = sessionStorage.getItem("role") || "User";
+
+    document.getElementById("userFullName").innerText = fullName;
+    document.getElementById("userEmail").innerText = email;
+    document.getElementById("userPhone").innerText = phone;
+    document.getElementById("userRole").innerText = role;
+
+    function editProfile() {
+      alert("Edit Profile functionality coming soon!");
+    }
+  </script>
+</html>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="pragadesh" content="Travel And Toursim Management System">
+  <meta name="description" content="This is a Travel website">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Route's Travel Agency</title>
+  <link rel="icon" href="Images/Travels-Logo.jpg">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+/* Navigation Bars */
+nav{display:flex;justify-content:space-between;align-items:center;background-color:#fff;padding:10px 10px;color:#000}
+nav h3{display:flex;align-items:center;font-size:21px;padding:25px;margin:0;background-color: #FFD700;}
+nav h3 img{margin-left:8px;border-radius:5px;}
+nav ul{list-style:none;display:flex;margin:0;padding:0}
+nav ul li{margin-left:15px;font-size:20px}
+nav ul li a{
+  text-decoration:none;
+  color:#000;
+  font-weight:bold;
+  padding:12px 9px;
+  border-radius:7px;
+  display:inline-block;
+  transition: background-color .3s, color .3s;
+}
+nav ul li a.active {
+  background-color: #FFD700;  
+   transform: scale(1.05); 
+  font-weight: bold;
+}
+nav ul li a:hover {
+  background-color: #FFD700; 
+  color: black;
+}
+/* Navigation Search Button */
+.nav-search {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between input and button */
+}
+
+.nav-search input {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  width: 180px; /* Adjust width as needed */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-search input:focus {
+  border-color: #FFD700; /* Gold color when focused */
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.nav-search button {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 8px 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  margin-top: auto;
+  align-items: center;
+  gap: 5px; /* space between icon and text */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-search button:hover {
+  background-color: #e6c200;
+  transform: scale(1.05);
+}
+
+/* Back Ground Image CSS Style  */
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;   
+  height: 800px;     
+  margin: 5px auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.slider img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  object-fit: cover; /* makes image cover entire slider without distortion */
+}
+.slider img.active {
+  opacity: 1;
+}
+
+/* Text Overlay */
+.hero-text {
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  color: white; 
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7); 
+}
+.hero-text h1 {
+  font-size: 48px;
+  margin: 0;
+}
+.hero-text p {
+  font-size: 20px;
+  margin: 10px 0 0 0;
+}
+
+/* Footer Style */
+footer {
+  background-color: #282727; /* Dark footer background */
+  color: #fff;
+  padding: 12px 12px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-logo h4 {
+  text-align: center;
+  font-size: 25px;
+  color: #FFD700; /* Highlight color */
+  margin-bottom: 20px;
+}
+
+.footer-info p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.footer-info a {
+  color: #FFD700;
+  text-decoration: none;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+}
+
+.footer-social {
+  margin-top: 20px;
+}
+
+.footer-social a {
+  color: #FFD700;
+  margin: 0 10px;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.footer-social a:hover {
+  color: #e6c200;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .footer-logo h2 {
+    font-size: 22px;
+  }
+
+  .footer-info p {
+    font-size: 14px;
+  }
+}
+
+  </style>
+  
+  <link rel="stylesheet" href="PopularDestination.css">
+  <link rel="stylesheet" href="slideDots.css">
+  <link rel="stylesheet" href="specialOffer.css">
+  <link rel="stylesheet" href="about.css">
+  <link rel="stylesheet" href="contact-us.css">
+  <link rel="stylesheet" href="FAQ.css">
+  <!-- <link src="split-special-offer.js"> -->
+
+</head>
+<body>
+  
+<header>
+  <!-- Nav Bar -->
+  <nav>
+  <h3>
+    <img src="Images/Travels-Logo.jpg" alt="Travel Logo" width="30" height="30">VIBE ROUTE'S
+  </h3>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="#popular">Popular Destination</a></li>
+      <li><a href="#about-us">About Us</a></li>
+      <li><a href="#special">Special Offer</a></li>
+      <li><a href="#contact-us">Contact Us</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <!--Authentication-->
+      <li><a href="login.html">Sign In</a></li>
+    </ul>
+    <!-- Search Bar -->
+<div class="nav-search">
+  <input type="text" id="search" placeholder="Search your destination">
+  <button onclick="alert('Search clicked!')"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+</div>
+  <!-- <h2>YOUR FAVORITE TOUR</h2>
+    <div id="search-bar">
+    <input type="text" placeholder="Your Destination">
+    <input type="date" placeholder="date">
+    <input type="submit" value="Search">
+    </div> -->
+  </nav>
+   <!-- Image and Slogans Par and Slider Container -->
+<div class="slider">
+  <img src="Images/Background-Image.jpg" class="slide">
+  <img src="Images/Slide2.jpg" class="slide active">
+  <img src="Images/slide4.jpg" class="slide">
+  <img src="Images/slide5.jpg" class="slide">
+  <div class="hero-text">
+  <h1 style="color: white; text-shadow: 2px 2px 6px rgba(0,0,0,0.6); font-size: 48px; margin: 0;">World-Class Travel, Extraordinary Memories with Vibe Route’s 🌍✈️</h1>
+  <p style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); font-size: 22px; margin-top: 10px;text-align: center;"> Vibe Route’s Travel brings you exclusive destinations, <br>luxurious stays, and unforgettable adventures. Your dream vacation is just a few clicks away!
+  </p>  
+  </div>
+</div>
+</header>
+  
+<!-- Popular Destination -->
+<section class="Container" id="popular">
+  <h2>Popular Destinations</h2>
+  <div class="packages-grid">
+    <div class="card" style="background-image: url('Images/Kerala-Backwater.webp');">
+      <div class="overlay">
+        <h3>Kerala Backwaters</h3>
+        <p>Relax in serene houseboats amid lush green landscapes.</p>
+  <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+
+    <div class="card" style="background-image: url('Images/goa-beach-house.jpg');">
+      <div class="overlay">
+        <h3>Goa Beach Tour</h3>
+        <p>Sun, sand, and vibrant nightlife for an unforgettable experience.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+
+    <div class="card" style="background-image: url('Images/manali-adventure-tour.webp');">
+      <div class="overlay">
+        <h3>Manali Adventure</h3>
+        <p>Snow-capped mountains and thrilling outdoor activities.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+
+   <div class="card" style="background-image: url('Images/Taj_Mahal.jpg');">
+  <div class="overlay">
+    <h3>Taj Mahal</h3>
+    <p>Marvel at the iconic white marble mausoleum and its beautiful gardens in Agra.</p>
+    <a href="#" class="btn">Explore</a>
+  </div>
+</div>
+
+   <div class="card" style="background-image: url('Images/paris.jpg');">
+  <div class="overlay">
+    <h3>Paris</h3>
+    <p>Experience the romantic city of lights, iconic Eiffel Tower, and world-class cuisine.</p>
+    <a href="#" class="btn">Explore</a>
+  </div>
+</div>
+
+    <div class="card" style="background-image: url('Images/dubai-tour.webp');">
+      <div class="overlay">
+        <h3>Dubai Luxury Tour</h3>
+        <p>Experience modern architecture, desert safaris, and shopping extravaganza.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+
+    <div class="card" style="background-image: url('Images/kodikanal-advanture.webp');">
+  <div class="overlay">
+    <h3>Kodikanal Adventure</h3>
+    <p>Enjoy misty hills, lush green valleys, and serene lakes in Kodikanal.</p>
+    <a href="#" class="btn">Explore</a>
+  </div>
+</div>
+
+    <div class="card" style="background-image: url('Images/Thailand-adventure.jpg');">
+      <div class="overlay">
+        <h3>Thailand Escape</h3>
+        <p>Tropical beaches, vibrant culture, and amazing street food.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Us -->
+
+  <!-- Company Overview -->
+  <section id="about-us">
+     <h1>About Us</h1>
+    <h2>Company Overview</h2>
+    <p>Vibe Route’s Travel is your trusted partner in exploring the world. We specialize in offering curated tour packages, seamless bookings, and unforgettable experiences. Whether it’s a relaxing beach holiday, an adventurous trek, or a cultural journey, we ensure your travels are hassle-free and memorable.</p>
+  </section>
+
+  <!-- Our Office -->
+  <section>
+    <h2>Our Office</h2>
+    <p>We operate with a dedicated team passionate about delivering the best travel experiences from our headquarters in Chennai, India.</p>
+  </section>
+
+  <!-- Our Mission -->
+  <section>
+    <h2>Our Mission</h2>
+    <p>Our mission is to make travel accessible, enjoyable, and inspiring for everyone. We aim to create lifelong memories for our customers by delivering exceptional service, personalized itineraries, and unique travel experiences.</p>
+  </section>
+
+  <!-- Our Values -->
+  <section class="values">
+    <h2>Our Values</h2>
+    <ul>
+      <li><strong>Customer-Centric:</strong> Your satisfaction is our top priority.</li>
+      <li><strong>Integrity:</strong> We operate with transparency and honesty in every transaction.</li>
+      <li><strong>Innovation:</strong> Continuously improving and offering fresh travel experiences.</li>
+      <li><strong>Sustainability:</strong> Promoting responsible travel that respects local communities and the environment.</li>
+    </ul>
+  </section>
+
+  <!-- Meet Our Team -->
+  <div class="team-section">
+    <h2>Meet Our Team</h2>
+    <div class="team-container">
+
+      <!-- Member 1 -->
+      <div class="about-card">
+        <div class="about-img" style="background-image: url('Images/andrew.webp');"></div>
+        <div class="about-info">
+          <h3>John Doe</h3>
+          
+          <p>Role: Tour Planner</p>
+        </div>
+      </div>
+
+      <!-- Member 2 -->
+      <div class="about-card">
+        <div class="about-img" style="background-image: url('Images/micheal.webp');"></div>
+        <div class="about-info">
+          <h3>Jane Smith</h3>
+          
+          <p>Role: Agent</p>
+        </div>
+      </div>
+
+      <!-- Member 3 -->
+      <div class="about-card">
+        <div class="about-img" style="background-image: url('Images/john.png');"></div>
+        <div class="about-info">
+          <h3>Michael Lee</h3>
+          
+          <p>Role: Customer Service Executive</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+<!-- Special Offer -->
+<section class="special-offers" id="special">
+  <h2>Special Festival Offers</h2>
+
+  <div class="carousel">
+    <!-- Track -->
+      <div class="carousel-inner">
+    <div class="carousel-track">
+      <div class="carousel-card" style="background-image: url('https://img.freepik.com/free-vector/diwali-festival-offer-banner-with-diya_1017-15252.jpg');">
+        <div class="overlay">
+          <h3>Diwali Celebration Tour</h3>
+          <p>Celebrate Diwali with lights & fireworks <br>in <strong>Dubai</strong>.</p>
+          <p class="price"><span class="old-price"><del>₹80,000</del></span> ₹55,999</p>
+          <a href="#" class="btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-card" style="background-image: url('Images/holi.jpg');">
+        <div class="overlay">
+          <h3>Holi Colors Festival</h3>
+          <p>Enjoy vibrant Holi celebrations <br>in <strong>Goa</strong>.</p>
+          <p class="price"><span class="old-price"><del>₹25,000</del></span> ₹19,999</p>
+          <a href="#" class="btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-card" style="background-image: url('Images/christmas.jpg');">
+        <div class="overlay">
+          <h3>Christmas Wonderland</h3>
+          <p>Celebrate the festive season <br>in <strong>Paris</strong>.</p>
+          <p class="price"><span class="old-price"><del>₹1,20,000</del></span> ₹1,02,000</p>
+          <a href="#" class="btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-card" style="background-image: url('Images/eid.webp');">
+        <div class="overlay">
+          <h3>Eid Special Tour</h3>
+          <p>Celebrate Eid with joy & traditions <br>in <strong>Thailand</strong>.</p>
+          <p class="price"><span class="old-price"><del>₹60,000</del></span> ₹44,999</p>
+          <a href="#" class="btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-card" style="background-image: url('Images/pongal.jpg');">
+  <div class="overlay">
+    <h3>Pongal Festival</h3>
+    <p>Celebrate the harvest festival of <strong>Kodikanal</strong> <br>with joy and tradition.</p>
+    <p class="price"><span class="old-price"><del>₹20,000</del></span> ₹15,999</p>
+    <a href="#" class="btn">Book Now</a>
+  </div>
+</div>
+
+<div class="carousel-card" style="background-image: url('Images/tamil-new-year.webp');">
+  <div class="overlay">
+    <h3>Tamil New Year</h3>
+    <p>Welcome the new year with festivities and <br>cultural events in <strong>Kodikanal</strong>.</p>
+    <p class="price"><span class="old-price"><del>₹22,000</del></span> ₹18,499</p>
+    <a href="#" class="btn">Book Now</a>
+  </div>
+</div>
+</div>
+</div>
+    <!-- Buttons -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+    <!-- Dots -->
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Us Page -->
+<div class="contact-container" id="contact-us">
+    <h2>Contact Us</h2>
+    <p>We'd love to hear from you! Please fill out the form below.</p>
+
+    <div class="contact-wrapper">
+      <!-- Left: Contact Info -->
+      <div class="contact-info">
+        <h3>Our Contact Info</h3>
+        <p><i class="fa fa-map-marker-alt"></i> 123 Travel Street, India</p>
+        <p><i class="fa fa-phone"></i> +91 98765 43210</p>
+        <p><i class="fa fa-envelope"></i> support@travel.com</p>
+      </div>
+
+      <!-- Right: Contact Form -->
+      <form id="contactForm" class="contact-form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email" required>
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="contact.js"></script>
+
+<!-- FAQ Part -->
+ <div class="faq-container" id="faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How do I make a booking? <i class="fa fa-plus"></i>
+      </button>
+      <div class="faq-answer">
+        You can book your tour directly on our website by selecting the desired package, choosing your travel dates, and completing the payment process. You will receive a confirmation email immediately after booking.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you offer international packages? <i class="fa fa-plus"></i>
+      </button>
+      <div class="faq-answer">
+        Yes! We offer curated international travel packages to popular destinations around the world. You can browse them in our International Packages section and customize your itinerary as per your preferences.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Can I customize my travel package? <i class="fa fa-plus"></i>
+      </button>
+      <div class="faq-answer">
+        Absolutely! We provide options to customize your package including travel dates, accommodation type, activities, and transportation. Contact our travel experts to create your perfect itinerary.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What payment methods do you accept? <i class="fa fa-plus"></i>
+      </button>
+      <div class="faq-answer">
+        We accept all major credit and debit cards, UPI, net banking, and popular digital wallets. Payment is secure and your details are protected through our encryption system.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you offer discounts for groups? <i class="fa fa-plus"></i>
+      </button>
+      <div class="faq-answer">
+        Yes, we provide special discounts for group bookings. The discount depends on the number of travelers and the package selected. Please contact our customer service for detailed information.
+      </div>
+    </div>
+
+  </div>
+
+  <script src="faq.js"></script>
+
+<!-- Footer Page Details -->
+ <footer>
+  <div class="footer-container">
+    <div class="footer-logo">
+  <h4>
+    Vibe Route's
+  </h4>
+    </div>
+    <div class="footer-info">
+      <p>© 2025 Vibe Route Travel. All rights reserved.</p>
+      <p>Address: 123 Travel Street, Chennai, Tamil Nadu, India</p>
+      <p>Email: <a href="mailto:info@viberoute.com" target="_blank">info@viberoute.com</a></p>
+      <p>Phone: <a href="tel:+919876543210" target="_blank">+91 98765 43210</a></p>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://x.com/?lang=en" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+      <a href="https://www.instagram.com/p/C5uiWgkSbQC/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+
+<!-- Image auto change script-->
+<script>
+const slides = document.querySelectorAll('.slider .slide');
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+  // Auto slide every 3 seconds
+  setInterval(nextSlide, 3000);
+</script>
+
+
+<script>
+  // Slide Special Offer 
+const track = document.querySelector('.carousel-track');
+const cards = Array.from(track.children);
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+const dotsContainer = document.querySelector('.dots');
+const dots = Array.from(dotsContainer.children);
+
+let currentIndex = 0;
+
+function getCardsVisible() {
+  const width = window.innerWidth;
+  if (width >= 1024) return 4;
+  if (width >= 768) return 3;
+  if (width >= 480) return 2;
+  return 1;
+}
+
+function updateDots() {
+  dots.forEach(dot => dot.classList.remove('active'));
+  dots[currentIndex]?.classList.add('active');
+}
+
+function goToSlide(index) {
+  const cardWidth = cards[0].getBoundingClientRect().width + 20; // include margin
+  track.style.transform = `translateX(-${cardWidth * index}px)`;
+  currentIndex = index;
+  updateDots();
+}
+
+nextBtn.addEventListener('click', () => {
+  const visible = getCardsVisible();
+  if (currentIndex < cards.length - visible) {
+    goToSlide(currentIndex + 1);
+  }
+});
+
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    goToSlide(currentIndex - 1);
+  }
+});
+
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    goToSlide(i);
+  });
+});
+
+window.addEventListener('resize', () => {
+  goToSlide(currentIndex); // recalc transform on resize
+});
+</script>  
+
+  <!-- Check Login or not -->
+ <script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Get all Explore / Book buttons
+  const protectedButtons = document.querySelectorAll(".btn"); // assuming all protected buttons have class "btn"
+
+  protectedButtons.forEach(button => {
+    button.addEventListener("click", function(event) {
+      const isLoggedIn = sessionStorage.getItem("isLoggedIn"); // or localStorage.getItem("isLoggedIn")
+
+      if (!isLoggedIn) {
+        // event.preventDefault(); // prevent default link behavior
+        // alert("You must login first to see the tours!");
+        window.location.href = "login.html";
+      }
+      // else: allow normal click (go to Tour-Packages.html)
+    });
+  });
+});
+</script>
+
+
+</html>

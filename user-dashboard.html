@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="icon" href="Images/Travels-Logo.jpg">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="user-dashboard-nav.css">
+  <link rel="stylesheet" href="PopularDestination.css">
+  <link rel="stylesheet" href="specialOffer.css">
+  <link rel="stylesheet" href="footer.css">
+
+
+  <!-- user LoggedIn or Not -->
+  <!-- <h2 id="welcomeMsg"></h2>
+<div id="userDetails" class="user-details-card"></div> -->
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+  // Check login
+  const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+  if (!isLoggedIn) {
+    alert("Please login first!");
+    window.location.href = "login.html";
+    return;
+  }
+
+  // Get all user details
+  const fullname = sessionStorage.getItem("fullname") || "John Doe";
+  const email = sessionStorage.getItem("email") || "johndoe@example.com";
+  const phone = sessionStorage.getItem("phone") || "";
+  const role = sessionStorage.getItem("role") || "User";
+
+  // Display welcome message
+  const welcomeEl = document.getElementById("welcomeMsg");
+  if (welcomeEl) {
+    welcomeEl.innerHTML = `
+      <strong>Welcome, ${fullname}</strong><br>
+      Email: ${email}<br>
+      Phone: ${phone}<br>
+      Role: ${role}
+    `;
+  }
+
+  // Optional: if you have a profile card section
+  const profileContainer = document.getElementById("userDetails");
+  if (profileContainer) {
+    profileContainer.innerHTML = `
+      <p><strong>Full Name:</strong> ${fullname}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Role:</strong> ${role}</p>
+    `;
+  }
+});
+</script>
+
+<!-- Internal CSS -->
+<style>
+  /* Back Ground Image CSS Style  */
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;   
+  height: 800px;     
+  margin: 5px auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.slider img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  object-fit: cover; /* makes image cover entire slider without distortion */
+}
+.slider img.active {
+  opacity: 1;
+}
+
+/* Text Overlay */
+.hero-text {
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  color: white; 
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7); 
+}
+.hero-text h1 {
+  font-size: 48px;
+  margin: 0;
+}
+.hero-text p {
+  font-size: 20px;
+  margin: 10px 0 0 0;
+}
+
+/* Cards */
+/* Dashboard Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #111; /* black card */
+      color: #ffc107; /* yellow text */
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background-color: #ffc107; /* yellow card on hover */
+      color: #111; /* black text on hover */
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+    }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .footer-logo h2 {
+    font-size: 22px;
+  }
+
+  .footer-info p {
+    font-size: 14px;
+  }
+}
+  /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 60px;
+      }
+      .sidebar h2 {
+        display: none;
+      }
+      .sidebar ul li {
+        padding: 15px 10px;
+      }
+      .sidebar ul li span {
+        display: none;
+      }
+    }
+</style>
+</head>
+<body>
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- Navbar -->
+     <nav>
+  <h3>
+    <img src="Images/Travels-Logo.jpg" alt="Travel Logo" width="30" height="30">VIBE ROUTE'S
+  </h3>
+    <ul>
+      <li> <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li> <a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+      <li> <a href=""><i class="fas fa-plane"></i> Bookings</a></li>
+      <li>  <a href=""><i class="fas fa-heart"></i>  Favorites</a></li>
+      <li> <a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+    <!-- Search Bar -->
+<!-- <div class="nav-search">
+  <input type="text" id="search" placeholder="Search your destination">
+  <button onclick="alert('Search clicked!')"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+</div> -->
+  <!-- <h2>YOUR FAVORITE TOUR</h2>
+    <div id="search-bar">
+    <input type="text" placeholder="Your Destination">
+    <input type="date" placeholder="date">
+    <input type="submit" value="Search">
+    </div> -->
+  </nav>
+
+ <!-- Image and Slogans Par and Slider Container -->
+<div class="slider">
+  <img src="Images/Background-Image.jpg" class="slide">
+  <img src="Images/Slide2.jpg" class="slide active">
+  <img src="Images/slide4.jpg" class="slide">
+  <img src="Images/slide5.jpg" class="slide">
+  <div class="hero-text">
+  <h1 style="color: white; text-shadow: 2px 2px 6px rgba(0,0,0,0.6); font-size: 48px; margin: 0;">World-Class Travel, Extraordinary Memories with Vibe Route’s 🌍✈️</h1>
+  <p style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); font-size: 22px; margin-top: 10px;text-align: center;"> Vibe Route’s Travel brings you exclusive destinations, <br>luxurious stays, and unforgettable adventures. Your dream vacation is just a few clicks away!
+  </p>  
+  </div>
+</div>
+</header>
+  
+<!-- Popular Destination -->
+<section class="Container" id="popular">
+  <h2>Popular Destinations</h2>
+  <div class="packages-grid">
+    <div class="card" style="background-image: url('Images/Kerala-Backwater.webp');">
+      <div class="overlay">
+        <h3>Kerala Backwaters</h3>
+        <p>Relax in serene houseboats amid lush green landscapes.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+
+    <div class="card" style="background-image: url('Images/goa-beach-house.jpg');">
+      <div class="overlay">
+        <h3>Goa Beach Tour</h3>
+        <p>Sun, sand, and vibrant nightlife for an unforgettable experience.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+
+    <div class="card" style="background-image: url('Images/manali-adventure-tour.webp');">
+      <div class="overlay">
+        <h3>Manali Adventure</h3>
+        <p>Snow-capped mountains and thrilling outdoor activities.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+
+   <div class="card" style="background-image: url('Images/Taj_Mahal.jpg');">
+  <div class="overlay">
+    <h3>Taj Mahal</h3>
+    <p>Marvel at the iconic white marble mausoleum and its beautiful gardens in Agra.</p>
+    <a href="#" class="btn">Explore</a>
+  </div>
+</div>
+
+   <div class="card" style="background-image: url('Images/paris.jpg');">
+  <div class="overlay">
+    <h3>Paris</h3>
+    <p>Experience the romantic city of lights, iconic Eiffel Tower, and world-class cuisine.</p>
+    <a href="#" class="btn">Explore</a>
+  </div>
+</div>
+
+    <div class="card" style="background-image: url('Images/dubai-tour.webp');">
+      <div class="overlay">
+        <h3>Dubai Luxury Tour</h3>
+        <p>Experience modern architecture, desert safaris, and shopping extravaganza.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+
+    <div class="card" style="background-image: url('Images/kodikanal-advanture.webp');">
+  <div class="overlay">
+    <h3>Kodikanal Adventure</h3>
+    <p>Enjoy misty hills, lush green valleys, and serene lakes in Kodikanal.</p>
+    <a href="#" class="btn">Explore</a>
+  </div>
+</div>
+
+    <div class="card" style="background-image: url('Images/Thailand-adventure.jpg');">
+      <div class="overlay">
+        <h3>Thailand Escape</h3>
+        <p>Tropical beaches, vibrant culture, and amazing street food.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Content Area -->
+     <div class="content-area">
+      <h2>Overview</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Total Bookings</h3>
+          <p>23 trips booked</p>
+        </div>
+        <div class="card">
+          <h3>Upcoming Trips</h3>
+          <p>3 upcoming trips</p>
+        </div>
+        <div class="card">
+          <h3>Favorites</h3>
+          <p>5 favorite destinations</p>
+        </div>
+        <div class="card">
+          <h3>Support Tickets</h3>
+          <p>2 open tickets</p>
+        </div>
+      </div>
+    </div>
+
+<!-- Special Offer -->
+ 
+<section class="special-offers" id="special">
+  <h2>Special Festival Offers</h2>
+
+  <div class="carousel">
+    <!-- Track -->
+      <div class="carousel-inner">
+    <div class="carousel-track">
+      <div class="carousel-card" style="background-image: url('https://img.freepik.com/free-vector/diwali-festival-offer-banner-with-diya_1017-15252.jpg');">
+        <div class="overlay">
+          <h3>Diwali Celebration Tour</h3>
+          <p>Celebrate Diwali with lights & fireworks <br>in <strong>Dubai</strong>.</p>
+          <p class="price"><span class="old-price"><del>₹80,000</del></span> ₹55,999</p>
+          <a href="#" class="btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-card" style="background-image: url('Images/holi.jpg');">
+        <div class="overlay">
+          <h3>Holi Colors Festival</h3>
+          <p>Enjoy vibrant Holi celebrations <br>in <strong>Goa</strong>.</p>
+          <p class="price"><span class="old-price"><del>₹25,000</del></span> ₹19,999</p>
+          <a href="#" class="btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-card" style="background-image: url('Images/christmas.jpg');">
+        <div class="overlay">
+          <h3>Christmas Wonderland</h3>
+          <p>Celebrate the festive season <br>in <strong>Paris</strong>.</p>
+          <p class="price"><span class="old-price"><del>₹1,20,000</del></span> ₹1,02,000</p>
+          <a href="#" class="btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-card" style="background-image: url('Images/eid.webp');">
+        <div class="overlay">
+          <h3>Eid Special Tour</h3>
+          <p>Celebrate Eid with joy & traditions <br>in <strong>Thailand</strong>.</p>
+          <p class="price"><span class="old-price"><del>₹60,000</del></span> ₹44,999</p>
+          <a href="#" class="btn">Book Now</a>
+        </div>
+      </div>
+
+      <div class="carousel-card" style="background-image: url('Images/pongal.jpg');">
+  <div class="overlay">
+    <h3>Pongal Festival</h3>
+    <p>Celebrate the harvest festival of <strong>Kodikanal</strong> <br>with joy and tradition.</p>
+    <p class="price"><span class="old-price"><del>₹20,000</del></span> ₹15,999</p>
+    <a href="#" class="btn">Book Now</a>
+  </div>
+</div>
+
+<div class="carousel-card" style="background-image: url('Images/tamil-new-year.webp');">
+  <div class="overlay">
+    <h3>Tamil New Year</h3>
+    <p>Welcome the new year with festivities and <br>cultural events in <strong>Kodikanal</strong>.</p>
+    <p class="price"><span class="old-price"><del>₹22,000</del></span> ₹18,499</p>
+    <a href="#" class="btn">Book Now</a>
+  </div>
+</div>
+</div>
+</div>
+    <!-- Buttons -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+    <!-- Dots -->
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Page Details -->
+ <footer>
+  <div class="footer-container">
+    <div class="footer-logo">
+  <h3>
+    <img src="Images/Travels-Logo.jpg" alt="Travel Logo" width="15px" height="20px">Vibe Route's
+  </h3>
+    </div>
+    <div class="footer-info">
+      <p>© 2025 Vibe Route Travel. All rights reserved.</p>
+      <p>Address: 123 Travel Street, Chennai, Tamil Nadu, India</p>
+      <p>Email: <a href="mailto:info@viberoute.com">info@viberoute.com</a></p>
+      <p>Phone: <a href="tel:+919876543210">+91 98765 43210</a></p>
+    </div>
+    <div class="footer-social">
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+<script>
+const slides = document.querySelectorAll('.slider .slide');
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+
+  // Auto slide every 3 seconds
+  setInterval(nextSlide, 3000);
+
+  
+function slideSpecial () {
+  // Slide Special Offer 
+const track = document.querySelector('.carousel-track');
+const cards = Array.from(track.children);
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+const dotsContainer = document.querySelector('.dots');
+const dots = Array.from(dotsContainer.children);
+
+let currentIndex = 0;
+
+function getCardsVisible() {
+  const width = window.innerWidth;
+  if (width >= 1024) return 4;
+  if (width >= 768) return 3;
+  if (width >= 480) return 2;
+  return 1;
+}
+
+function updateDots() {
+  dots.forEach(dot => dot.classList.remove('active'));
+  dots[currentIndex]?.classList.add('active');
+}
+
+function goToSlide(index) {
+  const cardWidth = cards[0].getBoundingClientRect().width + 20; // include margin
+  track.style.transform = `translateX(-${cardWidth * index}px)`;
+  currentIndex = index;
+  updateDots();
+}
+
+nextBtn.addEventListener('click', () => {
+  const visible = getCardsVisible();
+  if (currentIndex < cards.length - visible) {
+    goToSlide(currentIndex + 1);
+  }
+});
+
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    goToSlide(currentIndex - 1);
+  }
+});
+
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    goToSlide(i);
+  });
+});
+
+window.addEventListener('resize', () => {
+  goToSlide(currentIndex); // recalc transform on resize
+});
+}
+slideSpecial();
+  </script>
+</html>
